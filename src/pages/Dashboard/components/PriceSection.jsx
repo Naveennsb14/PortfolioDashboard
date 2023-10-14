@@ -19,7 +19,7 @@ import { AiFillPlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 const PriceSection = () => {
   const timeStamps = ["7:15 PM", "7:55 PM", "8:55 PM", "9:55 PM", "10:55 PM"];
   return (
-    <CustomCard>
+    <CustomCard h="full">
       <Flex justify="space-between" align="start">
         <Stack>
           <HStack color="black.80">
