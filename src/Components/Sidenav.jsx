@@ -2,8 +2,15 @@ import { Box, HStack, Heading, Icon, Stack } from "@chakra-ui/react";
 import { RxDashboard } from "react-icons/rx";
 import { BsArrowDownUp } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidenav = () => {
+  const location=useLocation();
+  console.log(location)
+
+  const isActivelink = (link) =>{
+    return location.pathname === link;
+  }
   const navLinks = [
     {
       icons: RxDashboard,
@@ -36,27 +43,32 @@ const Sidenav = () => {
         </Heading>
         <Box mt="6" mx="3">
           {navLinks.map((nav) => (
+            <Link to={nav.link} key={nav.text}>
             <HStack
+            bg={isActivelink(nav.link) ? "#F3F3F7" : "transparent"}
+              color={isActivelink(nav.link) ? "#171717" : "#797E82"}
               borderRadius="10px"
               px="4"
-              key={nav.text}
               py="3"
+              bg={isActivelink("/support") ? "#F3F3F7" : "transparent"}
+              color={isActivelink("/support") ? "#171717" : "#797E82"}
               _hover={{
                 bg: "#F3F3F7",
                 color: "#171717",
               }}
-              color="#797E82"
             >
               <Icon as={nav.icons} />
               <text fontSize="14px" fontWeight="medium">
                 {nav.text}
               </text>
             </HStack>
+            </Link>
           ))}
         </Box>
       </Box>
 
       <Box mt="6" mx="3" mb="6">
+        <Link to="/support">
         <HStack
           borderRadius="10px"
           px="4"
@@ -72,6 +84,7 @@ const Sidenav = () => {
             Support
           </text>
         </HStack>
+        </Link>
       </Box>
     </Stack>
   );
